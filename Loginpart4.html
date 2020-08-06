@@ -7,15 +7,26 @@
     <title>Exam-HTML and JS</title>
     <script type="text/javascript">
 
-        let errMessage = "";
-        let err = false; 
+        function clearf() {
+           
+            errMessage = " ";
+            document.getElementById("usernameErr203").innerHTML = errMessage;
+            document.getElementById("passwordErr203").innerHTML = errMessage;
+            document.getElementById("confPasswordErr203").innerHTML = errMessage;
+            document.getElementById("emailErr203").innerHTML = errMessage;
+            successMessage = document.getElementById("success203");
+            successMessage.innerHTML = "";
+            successMessage.style.backgroundColor = "write";
+        }
        
         function validateForm(){
-
+            errMessage = " ";
+            err = false; 
             //username
             let username = document.getElementById("username203").value;
             let checkNumber = /[0-9]/g;
-            if(username.length < 1){
+            
+            if(username.length == 0){
                 errMessage = "<br>The username can not be empty<br>"
                 err = true;
             }
@@ -33,10 +44,9 @@
             }
             else{
                 errMessage = "&#10004;";
-                //err = false;
             }
-
             document.getElementById("usernameErr203").innerHTML = errMessage;
+            
 
             //password
             let password = document.getElementById("password203").value;
@@ -68,7 +78,6 @@
             }
             else{
                 errMessage = "&#10004;";
-                //err = false;
             }
             
             document.getElementById("passwordErr203").innerHTML = errMessage;
@@ -82,7 +91,7 @@
             }
             else if(password != confPassword){
                 errMessage = "&#10004;";
-                //err = false;
+
             }
             
 
@@ -153,7 +162,7 @@
             <span id="emailErr203"></span>
             </div><br><div>
             <input type="button" onclick="validateForm()" value="login" />
-            <input type="reset" value="reset" onclick="clear()" />
+            <input type="reset" value="reset" onclick="clearf()" />
             </div>
         </form>
 <div>
