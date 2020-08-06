@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Exam-HTML and JS</title>
+    <script type="text/javascript">
+
+        let errMessage = "";
+        let err = false; 
+       
+        function validateForm(){
+
+            //username
+            let username = document.getElementById("username203").value;
+            let checkNumber = /[0-9]/g;
+            if(username.length < 1){
+                errMessage = "<br>The username can not be empty<br>"
+                err = true;
+            }
+            /*else if(checkNumber.test(username)){
+                errMessage = "<br>The username can not have a number<br>";
+                err = true;
+            }
+            else if(username.length < 2){
+                errMessage = "<br>The username should be at least 2 characters<br>";
+                err = true;
+            }*/
+            else if(username.length > 24){
+                errMessage = "<br>The username should not be more than 24 characters<br>";
+                err = true;
+            }
+            else{
+                errMessage = "&#10004;";
+                //err = false;
+            }
+
+            document.getElementById("usernameErr203").innerHTML = errMessage;
+
+            //password
+            let password = document.getElementById("password203").value;
+            let checkUpperCase = /[A-Z]+/;
+            let specialCharaters = ['$','%','#','@','!','&'];
+            let chCount = 0;
+            for(let i=0; i < password.length; i++){
+                for(let j=0; j < specialCharaters.length; j++){
+                    if(password[i] == specialCharaters[j]){
+                        //chCount++;
+                    }
+                }
+            }
+            if(password.length < 4){
+                errMessage = "<br>The length of the password should be at least 8 characters<br>";
+                err = true;
+            }
+            else if(password.length > 12){
+                errMessage = "<br>The length of the password should not be more than 12 characters<br>";
+                err = true;
+            }
+            /*else if(!checkUpperCase.test(password)){
+                errMessage = "<br>The password should have atleast one upper case character<br>";
+                err = true;
+            }*/
+            else if(chCount >= 1 ){
+                errMessage = "<br>The password cannot have '$','%','#','@','!','&'<br>";
+                err = true;
+            }
+            else{
+                errMessage = "&#10004;";
+                //err = false;
+            }
+            
+            document.getElementById("passwordErr203").innerHTML = errMessage;
+
+
+            //confirm password
+            let confPassword = document.getElementById("confPassword203").value;
+            if(password != confPassword){
+                errMessage = "<br>The passwords did not match on the fields password and confirm password. Try again!<br>";
+                err = true;
+            }
+            else if(password != confPassword){
+                errMessage = "&#10004;";
+                //err = false;
+            }
+            
+
+            document.getElementById("confPasswordErr203").innerHTML = errMessage;
+
+            //email
+            let email = document.getElementById("email203").value;
+
+            
+            var atpos = email.indexOf("@");
+            var dotpos = email.lastIndexOf(".");
+            if (atpos<1 || dotpos<atpos+2 || dotpos+2>=email.length) {
+               errMessage = "<br>Not a valid e-mail address<br>";
+                err = true;
+            }
+            else{
+                errMessage = "&#10004;";
+            }
+            document.getElementById("emailErr203").innerHTML = errMessage;
+            
+            //form successful
+            let successMessage = document.getElementById("success203");
+            successMessage.innerHTML = "";
+            //successMessage.style.backgroundColor = "white";
+            if(err){
+                successMessage.innerHTML = "Unable to submit form. Needs correction!"
+                successMessage.style.backgroundColor = "yellow";
+            }
+            else{
+                successMessage.innerHTML = "Form successfully submitted"
+                successMessage.style.backgroundColor = "lightgreen";
+            }
+
+         return !err;
+           /* if (err){
+                let pass = document.getElementById("success203");
+                pass.innerHTML = "";
+                pass.style.backgroundColor = "green";
+            }else{
+                let fail = document.getElementById("success203");
+                fail.innerHTML = "";
+                fail.style.backgroundColor = "red";
+            }*/
+            
+        } </script>
+</head>
+<body>
+
+    <p style="text-align:center;" id="success203"></p>
+    <div class="form">
+        <form >
+            <div>
+            <label for="username">Username: </label>
+            <input type="text" name="username203" id="username203" />
+            <span id="usernameErr203"></span>
+            </div><br>
+            <div>
+            <label for="password">Password: </label>
+            <input type="text" name="password203" id="password203" />
+            <span id="passwordErr203"></span>
+            </div><br><div>
+            <label for="confPassword">Confirm Password</label>
+            <input type="text" name="confPassword203" id="confPassword203" />
+            <span id="confPasswordErr203"></span>
+            </div><br><div>
+            <label for="email">Email: </label>
+            <input type="email" name="email203" id="email203" />
+            <span id="emailErr203"></span>
+            </div><br><div>
+            <input type="button" onclick="validateForm()" value="login" />
+            <input type="reset" value="reset" onclick="clear()" />
+            </div>
+        </form>
+<div>
+    <h4> Form reqiuerement</h4>
+        <p>
+            1.- the username can not be empty<br>
+            2.- username can not have number (use a regular expression)<br>
+            3.- username must be at least 2 characters<br>
+            4.- username will not have more than 24 characters<br>
+            5.- password must be at least 8 characters<br>
+            6.- password will not have more than 12 characters<br>
+            7.- password must have at least one letter uppercase<br>
+            8.- password can not the following <br>
+                specialCharaters = ['$','%','#','@','!','&'];<br>
+                do not use regular expression but the array given to you<br>
+            9.- confirm password need to be equal to password <br>
+            10.-Need to be a valid email<br>
+            
+      </p>
+</div>
+        
+    </div>
+
+
+
+
+    
+   
+</body>
+</html>
